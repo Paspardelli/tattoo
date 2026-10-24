@@ -58,12 +58,12 @@ export default function Portfolio({ works, instagramUrl }: { works: WorkItem[]; 
   const current = openIndex !== null ? visible[openIndex] : undefined;
 
   return (
-    <section className="section" id="portfolio">
+    <section className="section section--light" id="portfolio">
       <div className="container">
         <header className="section__head reveal">
           <p className="eyebrow">Portfólio</p>
           <h2 className="section__title">
-            Trabalhos <span className="text-red">recentes</span>
+            Artes que <span className="text-red">falam por mim</span>
           </h2>
           <p className="section__sub">Toque em uma arte para ampliar. Todas as peças são autorais.</p>
         </header>

@@ -21,7 +21,8 @@ const FIELDS: FieldDef[] = [
   { key: 'instagram', label: 'Instagram (sem o @)', type: 'text', placeholder: 'seuinstagram' },
   { key: 'endereco', label: 'Endereço', type: 'text' },
   { key: 'horario', label: 'Horário de atendimento', type: 'text', placeholder: 'Seg a Sáb, 10h às 19h' },
-  { key: 'foto_url', label: 'Foto do tatuador (seção Sobre)', type: 'image' },
+  { key: 'hero_foto_url', label: 'Foto do tatuador (topo do site)', type: 'image', help: 'Vertical (retrato), de preferência com fundo escuro. É a primeira coisa que o cliente vê.' },
+  { key: 'foto_url', label: 'Foto do tatuador (seção Sobre)', type: 'image', help: 'Outra foto dele tatuando ou no estúdio.' },
   { key: 'ano_inicio', label: 'Tatuando desde (ano)', type: 'text', placeholder: '2018' },
   { key: 'stat_anos', label: 'Anos de experiência', type: 'number' },
   { key: 'stat_tattoos', label: 'Tatuagens feitas', type: 'number' },
@@ -96,7 +97,7 @@ export default function SettingsForm() {
         <FormFields
           fields={FIELDS}
           values={values}
-          imageFolder="sobre"
+          imageFolder="tatuador"
           onChange={(key, value) => {
             setSaved(false);
             setValues((previous) => ({ ...previous, [key]: value }));

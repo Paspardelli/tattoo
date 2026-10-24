@@ -45,6 +45,7 @@ const WORK_FIELDS: FieldDef[] = [
 ];
 
 const STYLE_FIELDS: FieldDef[] = [
+  { key: 'imagem_url', label: 'Foto do estilo (opcional)', type: 'image', help: 'Uma tattoo que represente o estilo. Sem foto, aparece o ícone.' },
   { key: 'nome', label: 'Nome do estilo', type: 'text', required: true, placeholder: 'Ex.: Blackwork' },
   { key: 'descricao', label: 'Descrição', type: 'textarea' },
   { key: 'arte', label: 'Ícone', type: 'select', options: ARTE_OPTIONS },
@@ -140,7 +141,9 @@ export default function AdminPanel() {
             fields={STYLE_FIELDS}
             titleKey="nome"
             subtitleKey="descricao"
-            blank={{ nome: '', descricao: '', arte: 'adaga' }}
+            imageKey="imagem_url"
+            imageFolder="estilos"
+            blank={{ nome: '', descricao: '', arte: 'adaga', imagem_url: '' }}
           />
         )}
 

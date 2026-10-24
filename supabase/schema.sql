@@ -24,6 +24,7 @@ create table if not exists public.settings (
   sobre_texto1    text not null default '',
   sobre_texto2    text not null default '',
   foto_url        text,
+  hero_foto_url   text,
   mensagem_padrao text not null default 'Olá! Vim pelo site e gostaria de fazer um orçamento de tatuagem.'
 );
 
@@ -33,6 +34,7 @@ create table if not exists public.styles (
   nome       text not null,
   descricao  text not null default '',
   arte       text not null default 'adaga',
+  imagem_url text,
   ordem      int  not null default 0,
   visivel    boolean not null default true,
   created_at timestamptz not null default now()
@@ -85,6 +87,10 @@ create table if not exists public.leads (
   ideia      text not null check (char_length(ideia) between 1 and 2000),
   tratado    boolean not null default false
 );
+
+-- Atualização para quem já tinha rodado uma versão anterior deste arquivo
+alter table public.settings add column if not exists hero_foto_url text;
+alter table public.styles   add column if not exists imagem_url text;
 
 -- ---------------------------------------------------------------------
 -- 2) SEGURANÇA (RLS)

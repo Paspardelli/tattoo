@@ -14,6 +14,7 @@ export type Settings = {
   sobre_texto1: string;
   sobre_texto2: string;
   foto_url: string | null;
+  hero_foto_url: string | null;
   mensagem_padrao: string;
 };
 
@@ -22,6 +23,7 @@ export type StyleItem = {
   nome: string;
   descricao: string;
   arte: string;
+  imagem_url: string | null;
   ordem: number;
   visivel: boolean;
 };

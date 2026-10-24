@@ -21,6 +21,7 @@ export const DEFAULT_SETTINGS: Settings = {
   sobre_texto2:
     'Meu compromisso é entregar uma tatuagem bem executada, que envelheça bem e que você tenha orgulho de mostrar pelo resto da vida, num ambiente limpo, tranquilo e seguro.',
   foto_url: null,
+  hero_foto_url: null,
   mensagem_padrao: 'Olá! Vim pelo site e gostaria de fazer um orçamento de tatuagem.',
 };
 
@@ -29,6 +30,7 @@ const style = (i: number, nome: string, arte: string, descricao: string): StyleI
   nome,
   arte,
   descricao,
+  imagem_url: null,
   ordem: i,
   visivel: true,
 });

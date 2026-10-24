@@ -8,12 +8,12 @@ import About from '@/components/site/About';
 import StylesSection from '@/components/site/StylesSection';
 import Portfolio from '@/components/site/Portfolio';
 import Process from '@/components/site/Process';
-import Features from '@/components/site/Features';
 import Testimonials from '@/components/site/Testimonials';
 import FaqSection from '@/components/site/FaqSection';
 import QuoteSection from '@/components/site/QuoteSection';
 import Footer from '@/components/site/Footer';
 import WhatsFloat from '@/components/site/WhatsFloat';
+import StickyCta from '@/components/site/StickyCta';
 import Effects from '@/components/site/Effects';
 
 // O conteúdo vem do Supabase. A página é regenerada a cada 60s e na hora em que o admin salva.
@@ -42,9 +42,9 @@ export default async function HomePage() {
 
   // o menu só mostra seções que existem
   const links: NavLink[] = [
-    { href: '#sobre', label: 'Sobre' },
-    ...(styles.length > 0 ? [{ href: '#estilos', label: 'Estilos' }] : []),
     ...(works.length > 0 ? [{ href: '#portfolio', label: 'Portfólio' }] : []),
+    ...(styles.length > 0 ? [{ href: '#estilos', label: 'Estilos' }] : []),
+    { href: '#sobre', label: 'Sobre' },
     { href: '#processo', label: 'Processo' },
     ...(testimonials.length > 0 ? [{ href: '#depoimentos', label: 'Clientes' }] : []),
     ...(faqs.length > 0 ? [{ href: '#faq', label: 'Dúvidas' }] : []),
@@ -70,19 +70,19 @@ export default async function HomePage() {
     <>
       <Header nome={settings.nome} links={links} />
       <main>
-        <Hero settings={settings} tagline={styleNames.slice(0, 3).join(' • ')} />
+        <Hero settings={settings} />
         <Marquee items={styleNames} />
-        <About settings={settings} />
-        {styles.length > 0 && <StylesSection styles={styles} />}
         {works.length > 0 && <Portfolio works={works} instagramUrl={instagramUrl} />}
+        {styles.length > 0 && <StylesSection styles={styles} />}
+        <About settings={settings} />
         <Process />
-        <Features />
         {testimonials.length > 0 && <Testimonials items={testimonials} />}
         {faqs.length > 0 && <FaqSection items={faqs} />}
         <QuoteSection settings={settings} estilos={styleNames} />
       </main>
       <Footer nome={settings.nome} whatsappUrl={whatsappUrl} instagramUrl={instagramUrl} />
       <WhatsFloat href={whatsappUrl} />
+      <StickyCta />
       <Effects />
       <script
         type="application/ld+json"

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, type FormEvent } from 'react';
+import { useEffect, useState, type FormEvent } from 'react';
 import { createClient, hasSupabase } from '@/lib/supabase/client';
 import { whatsappLink } from '@/lib/utils';
 
@@ -26,6 +26,16 @@ const TIPOS = ['Não, pele virgem', 'Sim, cobertura', 'Retoque'];
 export default function QuoteForm({ estilos, whatsapp }: { estilos: string[]; whatsapp: string }) {
   const [values, setValues] = useState<Values>(EMPTY);
   const [errors, setErrors] = useState<Errors>({});
+
+  // "Quero este estilo" (cards) preenche o campo Estilo
+  useEffect(() => {
+    const onSelect = (event: Event) => {
+      const nome = (event as CustomEvent<string>).detail;
+      if (typeof nome === 'string') setValues((previous) => ({ ...previous, estilo: nome }));
+    };
+    window.addEventListener('select-style', onSelect);
+    return () => window.removeEventListener('select-style', onSelect);
+  }, []);
 
   function update(key: keyof Values, value: string) {
     setValues((previous) => ({ ...previous, [key]: value }));
