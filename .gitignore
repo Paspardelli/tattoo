@@ -1,0 +1,21 @@
+# dependências
+node_modules/
+
+# next
+.next/
+out/
+next-env.d.ts.bak
+
+# env (NUNCA suba chaves para o Git)
+.env
+.env.local
+.env.*.local
+
+# sistema / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+*.tsbuildinfo
+.vercel
