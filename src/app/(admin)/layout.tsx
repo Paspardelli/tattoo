@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import './admin.css';
 
 export const metadata: Metadata = {
-  title: 'Painel | Tattoo Studio',
+  title: 'Painel | Dinnao',
   robots: { index: false, follow: false },
 };
 

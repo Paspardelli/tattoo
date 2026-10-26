@@ -5,10 +5,10 @@ import type { Faq, SiteData, Settings, StyleItem, Testimonial, WorkItem } from '
 // tudo passa a ser editado no painel /admin.
 
 export const DEFAULT_SETTINGS: Settings = {
-  nome: 'Tattoo Studio',
+  nome: 'Dinnao',
   cidade: '',
   whatsapp: '5500000000000',
-  instagram: 'seuinstagram',
+  instagram: 'dinnao',
   endereco: 'Sua rua, 000 - Sua Cidade/UF',
   horario: 'Seg a Sáb, 10h às 19h',
   ano_inicio: '2018',

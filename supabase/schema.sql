@@ -11,7 +11,7 @@
 -- Configurações gerais (sempre 1 linha, id = 1)
 create table if not exists public.settings (
   id              int primary key default 1 check (id = 1),
-  nome            text not null default 'Tattoo Studio',
+  nome            text not null default 'Dinnao',
   cidade          text not null default '',
   whatsapp        text not null default '',
   instagram       text not null default '',
@@ -187,9 +187,9 @@ create policy "portfolio: admin apaga" on storage.objects
 insert into public.settings (id, nome, whatsapp, instagram, endereco, horario, hero_texto, sobre_texto1, sobre_texto2)
 values (
   1,
-  'Tattoo Studio',
+  'Dinnao',
   '5500000000000',
-  'seuinstagram',
+  'dinnao',
   'Sua rua, 000 - Sua Cidade/UF',
   'Seg a Sáb, 10h às 19h',
   'Cada tatuagem nasce de uma conversa e de um desenho feito do zero para você. Traço firme, sombras limpas, biossegurança total e um atendimento que respeita a sua ideia.',
