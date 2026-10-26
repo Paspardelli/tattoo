@@ -68,7 +68,13 @@ export default async function HomePage() {
 
   return (
     <>
-      <Header nome={settings.nome} links={links} />
+      <Header
+        nome={settings.nome}
+        links={links}
+        whatsappUrl={whatsappUrl}
+        instagramUrl={instagramUrl}
+        horario={settings.horario}
+      />
       <main>
         <Hero settings={settings} />
         <Marquee items={styleNames} />
