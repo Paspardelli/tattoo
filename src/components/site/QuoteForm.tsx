@@ -188,7 +188,7 @@ export default function QuoteForm({ estilos, whatsapp }: { estilos: string[]; wh
         </small>
       </div>
 
-      <button type="submit" className="btn btn--red btn--block">
+      <button type="submit" className="btn btn--primary btn--block">
         Enviar pelo WhatsApp
       </button>
       <p className="form__note">Você será redirecionado ao WhatsApp. Pode anexar fotos de referência por lá.</p>

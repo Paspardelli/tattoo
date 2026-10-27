@@ -7,7 +7,7 @@ export default function Testimonials({ items }: { items: Testimonial[] }) {
         <header className="section__head reveal">
           <p className="eyebrow">Quem já tatuou</p>
           <h2 className="section__title">
-            O que dizem os <span className="text-red">clientes</span>
+            O que dizem os <span className="text-accent">clientes</span>
           </h2>
         </header>
 

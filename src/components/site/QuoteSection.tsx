@@ -11,7 +11,7 @@ export default function QuoteSection({ settings, estilos }: { settings: Settings
         <div className="quote-box__text reveal">
           <p className="eyebrow">Orçamento grátis</p>
           <h2 className="section__title">
-            Vamos tirar a sua ideia do <span className="text-red">papel?</span>
+            Vamos tirar a sua ideia do <span className="text-accent">papel?</span>
           </h2>
           <p>
             Preencha o formulário. Ele monta a mensagem pronta e abre o meu WhatsApp, onde continuamos a conversa e eu te

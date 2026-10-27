@@ -25,7 +25,7 @@ export default function About({ settings }: { settings: Settings }) {
         <div className="about__content reveal">
           <p className="eyebrow">Quem vai riscar você</p>
           <h2 className="section__title">
-            Arte, técnica e <span className="text-red">respeito</span> pela sua ideia.
+            Arte, técnica e <span className="text-accent">respeito</span> pela sua ideia.
           </h2>
           {settings.sobre_texto1 && <p>{settings.sobre_texto1}</p>}
           {settings.sobre_texto2 && <p>{settings.sobre_texto2}</p>}
@@ -57,7 +57,7 @@ export default function About({ settings }: { settings: Settings }) {
             <li>Acompanhamento durante toda a cicatrização</li>
           </ul>
 
-          <a href="#orcamento" className="btn btn--red">
+          <a href="#orcamento" className="btn btn--primary">
             Agendar minha sessão
           </a>
         </div>

@@ -9,7 +9,7 @@ export default function StylesSection({ styles }: { styles: StyleItem[] }) {
         <header className="section__head reveal">
           <p className="eyebrow">Especialidades</p>
           <h2 className="section__title">
-            Estilos que <span className="text-red">eu faço</span>
+            Estilos que <span className="text-accent">eu faço</span>
           </h2>
           <p className="section__sub">Escolha um estilo ou me conte a sua ideia: eu adapto o traço ao que você quer.</p>
         </header>

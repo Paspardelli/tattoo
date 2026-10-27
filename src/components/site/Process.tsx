@@ -12,7 +12,7 @@ export default function Process() {
         <header className="section__head reveal">
           <p className="eyebrow">Como funciona</p>
           <h2 className="section__title">
-            Do primeiro contato à <span className="text-red">tatuagem pronta</span>
+            Do primeiro contato à <span className="text-accent">tatuagem pronta</span>
           </h2>
         </header>
 

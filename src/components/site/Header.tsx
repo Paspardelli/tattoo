@@ -109,7 +109,7 @@ export default function Header({ nome, links, whatsappUrl, instagramUrl, horario
           <a href={instagramUrl} className="icon-btn" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <InstagramIcon />
           </a>
-          <a href="#orcamento" className="btn btn--red btn--small header__cta">
+          <a href="#orcamento" className="btn btn--primary btn--small header__cta">
             Orçamento
           </a>
           <button
@@ -145,7 +145,7 @@ export default function Header({ nome, links, whatsappUrl, instagramUrl, horario
         </nav>
 
         <div className="menu__foot">
-          <a href="#orcamento" className="btn btn--red btn--block" onClick={close}>
+          <a href="#orcamento" className="btn btn--primary btn--block" onClick={close}>
             Pedir orçamento
           </a>
           <div className="menu__contacts">

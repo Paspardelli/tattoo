@@ -13,7 +13,7 @@ export default function FaqSection({ items }: { items: Faq[] }) {
         <header className="section__head reveal">
           <p className="eyebrow">Tire suas dúvidas</p>
           <h2 className="section__title">
-            Perguntas <span className="text-red">frequentes</span>
+            Perguntas <span className="text-accent">frequentes</span>
           </h2>
         </header>
 

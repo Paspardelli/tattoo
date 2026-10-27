@@ -14,14 +14,14 @@ export default function Hero({ settings }: { settings: Settings }) {
           <h1 className="hero__title">
             Arte que fica
             <br />
-            <span className="text-red">para sempre</span>
+            <span className="text-accent">para sempre</span>
             <br />
             na sua pele.
           </h1>
           <p className="hero__text">{settings.hero_texto}</p>
 
           <div className="hero__actions">
-            <a href="#orcamento" className="btn btn--red">
+            <a href="#orcamento" className="btn btn--primary">
               Quero minha tattoo
             </a>
             <a href="#portfolio" className="btn btn--ghost">

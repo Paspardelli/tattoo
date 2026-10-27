@@ -63,7 +63,7 @@ export default function Portfolio({ works, instagramUrl }: { works: WorkItem[]; 
         <header className="section__head reveal">
           <p className="eyebrow">Portfólio</p>
           <h2 className="section__title">
-            Artes que <span className="text-red">falam por mim</span>
+            Artes que <span className="text-accent">falam por mim</span>
           </h2>
           <p className="section__sub">Toque em uma arte para ampliar. Todas as peças são autorais.</p>
         </header>
