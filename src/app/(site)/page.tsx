@@ -83,8 +83,8 @@ export default async function HomePage() {
         <About settings={settings} />
         <Process />
         {testimonials.length > 0 && <Testimonials items={testimonials} />}
-        {faqs.length > 0 && <FaqSection items={faqs} />}
         <QuoteSection settings={settings} estilos={styleNames} />
+        {faqs.length > 0 && <FaqSection items={faqs} />}
       </main>
       <Footer nome={settings.nome} whatsappUrl={whatsappUrl} instagramUrl={instagramUrl} />
       <WhatsFloat href={whatsappUrl} />

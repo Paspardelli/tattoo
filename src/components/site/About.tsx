@@ -5,7 +5,7 @@ export default function About({ settings }: { settings: Settings }) {
   const photo = settings.foto_url || settings.hero_foto_url;
 
   return (
-    <section className="section" id="sobre">
+    <section className="section theme-light" id="sobre">
       <div className="container about">
         <div className="about__media reveal">
           <div className="about__photo">

@@ -3,7 +3,7 @@ import PortraitPlaceholder from './Portrait';
 
 export default function Hero({ settings }: { settings: Settings }) {
   return (
-    <section className="hero" id="inicio">
+    <section className="hero theme-light" id="inicio">
       <span className="hero__word" aria-hidden="true">
         Ink
       </span>
