@@ -7,7 +7,7 @@ import type { Faq, SiteData, Settings, StyleItem, Testimonial, WorkItem } from '
 export const DEFAULT_SETTINGS: Settings = {
   nome: 'Dinnao',
   cidade: '',
-  whatsapp: '5500000000000',
+  whatsapp: '5519993293422',
   instagram: 'dinnao',
   endereco: 'Sua rua, 000 - Sua Cidade/UF',
   horario: 'Seg a Sáb, 10h às 19h',

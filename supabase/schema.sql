@@ -188,7 +188,7 @@ insert into public.settings (id, nome, whatsapp, instagram, endereco, horario, h
 values (
   1,
   'Dinnao',
-  '5500000000000',
+  '5519993293422',
   'dinnao',
   'Sua rua, 000 - Sua Cidade/UF',
   'Seg a Sáb, 10h às 19h',
