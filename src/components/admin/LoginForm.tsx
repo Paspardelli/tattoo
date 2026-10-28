@@ -20,7 +20,18 @@ export default function LoginForm() {
     setBusy(false);
 
     if (signInError) {
-      setError('E-mail ou senha incorretos.');
+      const msg = signInError.message.toLowerCase();
+      if (msg.includes('not confirmed')) {
+        setError('E-mail ainda não confirmado. No Supabase, abra Authentication > Users, toque no usuário e confirme (ou recrie com "Auto Confirm User").');
+      } else if (msg.includes('invalid login')) {
+        setError('E-mail ou senha incorretos. Confira se o usuário existe em Authentication > Users no Supabase.');
+      } else if (msg.includes('api key') || msg.includes('apikey') || msg.includes('jwt')) {
+        setError('A chave do Supabase na Vercel está errada. Confira NEXT_PUBLIC_SUPABASE_ANON_KEY e faça um novo deploy.');
+      } else if (msg.includes('fetch') || msg.includes('network')) {
+        setError('Não consegui falar com o Supabase. Confira NEXT_PUBLIC_SUPABASE_URL na Vercel e se o projeto não está pausado.');
+      } else {
+        setError(`Não foi possível entrar: ${signInError.message}`);
+      }
       return;
     }
     // recarrega a página inteira para o servidor enxergar a sessão
