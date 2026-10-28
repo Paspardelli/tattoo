@@ -8,7 +8,7 @@ export default function FaqSection({ items }: { items: Faq[] }) {
   const answers = useRef<Record<string, HTMLDivElement | null>>({});
 
   return (
-    <section className="section theme-light" id="faq">
+    <section className="section" id="faq">
       <div className="container container--narrow">
         <header className="section__head reveal">
           <p className="eyebrow">Tire suas dúvidas</p>

@@ -2,7 +2,7 @@ import type { Testimonial } from '@/lib/types';
 
 export default function Testimonials({ items }: { items: Testimonial[] }) {
   return (
-    <section className="section section--light" id="depoimentos">
+    <section className="section section--alt" id="depoimentos">
       <div className="container">
         <header className="section__head reveal">
           <p className="eyebrow">Quem já tatuou</p>
