@@ -1,6 +1,7 @@
 import { cache } from 'react';
 import { createPublicClient } from './supabase/public';
 import { DEFAULT_DATA, DEFAULT_SETTINGS } from './defaults';
+import { normalizeGenero, textosPadrao } from './genero';
 import type { Faq, SiteData, Settings, StyleItem, Testimonial, WorkItem } from './types';
 
 // Junta o que veio do banco com os valores padrão (campos nulos usam o padrão).
@@ -10,6 +11,13 @@ function mergeSettings(row: Record<string, unknown> | null): Settings {
     for (const [key, value] of Object.entries(row)) {
       if (key in DEFAULT_SETTINGS && value !== null && value !== undefined) merged[key] = value;
     }
+  }
+  const genero = normalizeGenero(merged.genero);
+  merged.genero = genero;
+  // textos vazios usam o padrão certo para o gênero (tatuador/tatuadora)
+  const padrao = textosPadrao(genero);
+  for (const key of ['hero_texto', 'sobre_texto1', 'sobre_texto2'] as const) {
+    if (!String(merged[key] ?? '').trim()) merged[key] = padrao[key];
   }
   return merged as unknown as Settings;
 }

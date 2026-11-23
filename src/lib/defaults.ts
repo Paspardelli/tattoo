@@ -1,25 +1,26 @@
+import { textosPadrao } from './genero';
 import type { Faq, SiteData, Settings, StyleItem, Testimonial, WorkItem } from './types';
 
 // Conteúdo de exemplo. É usado quando o Supabase ainda não está configurado e
 // serve de base para o seed do banco (supabase/schema.sql). Depois de conectado,
 // tudo passa a ser editado no painel /admin.
 
+const textos = textosPadrao('m');
+
 export const DEFAULT_SETTINGS: Settings = {
-  nome: 'Dinnao',
+  nome: 'Seu Nome',
+  genero: 'm',
   cidade: '',
-  whatsapp: '5519993293422',
-  instagram: 'dinnao',
+  whatsapp: '5500000000000',
+  instagram: 'seuinstagram',
   endereco: 'Sua rua, 000 - Sua Cidade/UF',
   horario: 'Seg a Sáb, 10h às 19h',
   ano_inicio: '2018',
   stat_anos: 8,
   stat_tattoos: 1500,
-  hero_texto:
-    'Cada tatuagem nasce de uma conversa e de um desenho feito do zero para você. Traço firme, sombras limpas, biossegurança total e um atendimento que respeita a sua ideia.',
-  sobre_texto1:
-    'Sou tatuador profissional e trabalho com desenhos autorais. Antes de pegar a máquina, a gente conversa: entendo o significado, o local do corpo, o tamanho ideal e o estilo que combina com você.',
-  sobre_texto2:
-    'Meu compromisso é entregar uma tatuagem bem executada, que envelheça bem e que você tenha orgulho de mostrar pelo resto da vida, num ambiente limpo, tranquilo e seguro.',
+  hero_texto: textos.hero_texto,
+  sobre_texto1: textos.sobre_texto1,
+  sobre_texto2: textos.sobre_texto2,
   foto_url: null,
   hero_foto_url: null,
   mensagem_padrao: 'Olá! Vim pelo site e gostaria de fazer um orçamento de tatuagem.',
@@ -78,7 +79,7 @@ const quote = (i: number, nome: string, estilo: string, texto: string): Testimon
 
 export const DEFAULT_TESTIMONIALS: Testimonial[] = [
   quote(1, 'Rafael M.', 'Blackwork', 'Atendimento impecável do começo ao fim. O desenho ficou melhor do que eu imaginava e cicatrizou perfeito.'),
-  quote(2, 'Camila S.', 'Fine line', 'Ambiente super limpo e tranquilo. Foi minha primeira tatuagem e me senti seguro o tempo todo.'),
+  quote(2, 'Camila S.', 'Fine line', 'Ambiente super limpo e tranquilo. Foi minha primeira tatuagem e me senti segura o tempo todo.'),
   quote(3, 'Lucas P.', 'Cobertura', 'Fiz uma cobertura que eu achava impossível. Trabalho de mestre, recomendo de olhos fechados.'),
 ];
 

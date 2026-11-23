@@ -2,6 +2,7 @@
 
 export type Settings = {
   nome: string;
+  genero: 'm' | 'f';
   cidade: string;
   whatsapp: string;
   instagram: string;

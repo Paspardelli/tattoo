@@ -3,12 +3,23 @@
 import { useEffect, useMemo, useState } from 'react';
 import { revalidateSite } from '@/app/(admin)/admin/actions';
 import { DEFAULT_SETTINGS } from '@/lib/defaults';
+import { normalizeGenero, textosPadrao } from '@/lib/genero';
 import { createClient } from '@/lib/supabase/client';
 import FormFields, { type FieldDef, type Values } from './FormFields';
 import { Notice, btnPrimary } from './ui';
 
 const FIELDS: FieldDef[] = [
-  { key: 'nome', label: 'Nome do estúdio / tatuador', type: 'text', required: true },
+  { key: 'nome', label: 'Nome do estúdio / tatuador(a)', type: 'text', required: true },
+  {
+    key: 'genero',
+    label: 'Tatuador ou tatuadora?',
+    type: 'select',
+    options: [
+      { value: 'm', label: 'Tatuador (masculino)' },
+      { value: 'f', label: 'Tatuadora (feminino)' },
+    ],
+    help: 'Ajusta as palavras do site (tatuador/tatuadora). Se os textos ainda estiverem no padrão, eles também são ajustados.',
+  },
   { key: 'cidade', label: 'Cidade', type: 'text', placeholder: 'Ex.: Santa Bárbara d’Oeste - SP', help: 'Aparece no título do Google.' },
   {
     key: 'whatsapp',
@@ -21,8 +32,8 @@ const FIELDS: FieldDef[] = [
   { key: 'instagram', label: 'Instagram (sem o @)', type: 'text', placeholder: 'seuinstagram' },
   { key: 'endereco', label: 'Endereço', type: 'text' },
   { key: 'horario', label: 'Horário de atendimento', type: 'text', placeholder: 'Seg a Sáb, 10h às 19h' },
-  { key: 'hero_foto_url', label: 'Foto do tatuador (topo do site)', type: 'image', help: 'Vertical (retrato), de preferência com fundo escuro. É a primeira coisa que o cliente vê.' },
-  { key: 'foto_url', label: 'Foto do tatuador (seção Sobre)', type: 'image', help: 'Outra foto dele tatuando ou no estúdio.' },
+  { key: 'hero_foto_url', label: 'Foto de perfil (topo do site)', type: 'image', help: 'Vertical (retrato), de preferência com fundo escuro. É a primeira coisa que o cliente vê.' },
+  { key: 'foto_url', label: 'Foto na seção Sobre', type: 'image', help: 'Outra foto tatuando ou no estúdio.' },
   { key: 'ano_inicio', label: 'Tatuando desde (ano)', type: 'text', placeholder: '2018' },
   { key: 'stat_anos', label: 'Anos de experiência', type: 'number' },
   { key: 'stat_tattoos', label: 'Tatuagens feitas', type: 'number' },
@@ -44,7 +55,18 @@ export default function SettingsForm() {
     (async () => {
       const { data, error: loadError } = await supabase.from('settings').select('*').eq('id', 1).maybeSingle();
       if (loadError) setError(loadError.message);
-      else if (data) setValues((previous) => ({ ...previous, ...(data as Values) }));
+      else if (data) {
+        const row = data as Values;
+        const padrao = textosPadrao(normalizeGenero(row.genero));
+        setValues((previous) => ({
+          ...previous,
+          ...row,
+          genero: normalizeGenero(row.genero),
+          hero_texto: String(row.hero_texto ?? '').trim() ? row.hero_texto : padrao.hero_texto,
+          sobre_texto1: String(row.sobre_texto1 ?? '').trim() ? row.sobre_texto1 : padrao.sobre_texto1,
+          sobre_texto2: String(row.sobre_texto2 ?? '').trim() ? row.sobre_texto2 : padrao.sobre_texto2,
+        }));
+      }
       setLoading(false);
     })();
   }, [supabase]);
@@ -100,7 +122,18 @@ export default function SettingsForm() {
           imageFolder="tatuador"
           onChange={(key, value) => {
             setSaved(false);
-            setValues((previous) => ({ ...previous, [key]: value }));
+            setValues((previous) => {
+              const next = { ...previous, [key]: value };
+              if (key === 'genero') {
+                // troca tatuador <-> tatuadora nos textos que ainda estão no padrão
+                const antigo = textosPadrao(normalizeGenero(previous.genero));
+                const novo = textosPadrao(normalizeGenero(value));
+                for (const campo of ['hero_texto', 'sobre_texto1', 'sobre_texto2'] as const) {
+                  if (previous[campo] === antigo[campo]) next[campo] = novo[campo];
+                }
+              }
+              return next;
+            });
           }}
         />
       </div>

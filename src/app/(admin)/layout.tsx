@@ -3,7 +3,7 @@ import type { ReactNode } from 'react';
 import './admin.css';
 
 export const metadata: Metadata = {
-  title: 'Painel | Dinnao',
+  title: 'Painel do site',
   robots: { index: false, follow: false },
 };
 

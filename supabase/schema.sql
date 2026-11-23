@@ -11,7 +11,8 @@
 -- Configurações gerais (sempre 1 linha, id = 1)
 create table if not exists public.settings (
   id              int primary key default 1 check (id = 1),
-  nome            text not null default 'Dinnao',
+  nome            text not null default 'Seu Nome',
+  genero          text not null default 'm' check (genero in ('m', 'f')),
   cidade          text not null default '',
   whatsapp        text not null default '',
   instagram       text not null default '',
@@ -90,6 +91,8 @@ create table if not exists public.leads (
 
 -- Atualização para quem já tinha rodado uma versão anterior deste arquivo
 alter table public.settings add column if not exists hero_foto_url text;
+-- 'm' = tatuador, 'f' = tatuadora (para bancos criados antes desta coluna existir)
+alter table public.settings add column if not exists genero text not null default 'm' check (genero in ('m', 'f'));
 alter table public.styles   add column if not exists imagem_url text;
 
 -- ---------------------------------------------------------------------
@@ -184,17 +187,17 @@ create policy "portfolio: admin apaga" on storage.objects
 -- 4) CONTEÚDO INICIAL (só entra se a tabela estiver vazia)
 -- ---------------------------------------------------------------------
 
-insert into public.settings (id, nome, whatsapp, instagram, endereco, horario, hero_texto, sobre_texto1, sobre_texto2)
+-- Textos de abertura e "Sobre" ficam vazios de propósito: o site usa o texto padrão
+-- certo para tatuador ou tatuadora (e você edita tudo no painel).
+insert into public.settings (id, nome, genero, whatsapp, instagram, endereco, horario)
 values (
   1,
-  'Dinnao',
-  '5519993293422',
-  'dinnao',
+  'Seu Nome',
+  'm',
+  '5500000000000',
+  'seuinstagram',
   'Sua rua, 000 - Sua Cidade/UF',
-  'Seg a Sáb, 10h às 19h',
-  'Cada tatuagem nasce de uma conversa e de um desenho feito do zero para você. Traço firme, sombras limpas, biossegurança total e um atendimento que respeita a sua ideia.',
-  'Sou tatuador profissional e trabalho com desenhos autorais. Antes de pegar a máquina, a gente conversa: entendo o significado, o local do corpo, o tamanho ideal e o estilo que combina com você.',
-  'Meu compromisso é entregar uma tatuagem bem executada, que envelheça bem e que você tenha orgulho de mostrar pelo resto da vida, num ambiente limpo, tranquilo e seguro.'
+  'Seg a Sáb, 10h às 19h'
 )
 on conflict (id) do nothing;
 
@@ -226,7 +229,7 @@ where not exists (select 1 from public.works);
 insert into public.testimonials (nome, estilo, texto, ordem)
 select * from (values
   ('Rafael M.', 'Blackwork',  'Atendimento impecável do começo ao fim. O desenho ficou melhor do que eu imaginava e cicatrizou perfeito.', 1),
-  ('Camila S.', 'Fine line',  'Ambiente super limpo e tranquilo. Foi minha primeira tatuagem e me senti seguro o tempo todo.', 2),
+  ('Camila S.', 'Fine line',  'Ambiente super limpo e tranquilo. Foi minha primeira tatuagem e me senti segura o tempo todo.', 2),
   ('Lucas P.',  'Cobertura',  'Fiz uma cobertura que eu achava impossível. Trabalho de mestre, recomendo de olhos fechados.', 3)
 ) as v(nome, estilo, texto, ordem)
 where not exists (select 1 from public.testimonials);

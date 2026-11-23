@@ -1,4 +1,4 @@
-# Site para Tatuador — Preto & Vermelho
+# Modelo de site para Tatuador(a) — Preto, branco & cinza
 
 Site profissional para tatuador captar clientes, mostrar o portfólio e receber pedidos de orçamento direto no WhatsApp.
 O próprio tatuador edita **fotos, textos, estilos, depoimentos e FAQ** pelo painel `/admin`, sem mexer em código.
@@ -89,15 +89,36 @@ npm run typecheck            # confere os tipos
 | Mudar o visual de uma seção | `src/components/site/NomeDaSecao.tsx` |
 | Mudar a ordem das seções | `src/app/(site)/page.tsx` |
 | Adicionar um campo novo | coluna em `supabase/schema.sql` + `src/lib/types.ts` + campos em `AdminPanel.tsx` |
-| Textos fixos (processo, diferenciais) | `Process.tsx` e `Features.tsx` |
+| Textos fixos (processo, diferenciais) | `Process.tsx` e `About.tsx` |
 
 Fluxo de alteração: edite → `git add .` → `git commit -m "o que mudou"` → `git push` (a Vercel publica).
 
-## Reaproveitar para outro cliente
-1. Copie o projeto (ou use como template no GitHub) e crie **um projeto Supabase novo por cliente**.
-2. Rode `supabase/schema.sql` nele e crie o usuário do cliente.
-3. Crie um projeto na Vercel com as variáveis do novo Supabase.
-4. Ajuste as cores em `site.css` e o conteúdo pelo painel.
+## Modelo para novos clientes (tatuador ou tatuadora)
+
+Este projeto é o **modelo padrão**: nome, Instagram e WhatsApp vêm genéricos ("Seu Nome") e tudo se troca pelo painel.
+O campo **Tatuador ou tatuadora?** (Configurações) ajusta as palavras do site para o masculino ou o feminino.
+
+**Marcar o repositório como modelo (uma vez):** GitHub → repositório → *Settings* → marque **Template repository**.
+Para cada cliente novo: botão verde **Use this template → Create a new repository**.
+
+**Checklist para cada cliente (cerca de 20 minutos):**
+1. GitHub: *Use this template* e crie um repositório novo (ex.: `site-nome-do-cliente`).
+2. Supabase: crie **um projeto novo por cliente**, rode `supabase/schema.sql` e crie o usuário do cliente
+   (*Authentication → Users → Add user*, marque *Auto Confirm User*; depois desligue *Allow new users to sign up*).
+3. Vercel: *Add New → Project*, importe o repositório e cadastre `NEXT_PUBLIC_SUPABASE_URL`
+   (só o endereço, ex.: `https://xxxx.supabase.co`, sem `/rest/v1`) e `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+4. Abra `/admin` e preencha **Configurações**: nome, tatuador/tatuadora, cidade, WhatsApp, Instagram, endereço, horário,
+   fotos e textos. Depois suba as fotos do portfólio e ajuste estilos, depoimentos e dúvidas.
+5. Entregue o link e o login ao cliente.
+
+**Para mostrar a outros clientes (esboço):** publique o modelo numa Vercel/Supabase de demonstração com o conteúdo de exemplo
+e use esse link como vitrine. Os depoimentos e as artes de exemplo são fictícios; troque-os antes de entregar.
+
+**Já tenho o Supabase criado antes da opção tatuador/tatuadora:** rode no *SQL Editor* uma vez:
+
+```sql
+alter table public.settings add column if not exists genero text not null default 'm' check (genero in ('m', 'f'));
+```
 
 ## Segurança
 - Visitantes só **leem** o conteúdo visível e **enviam** orçamentos; só o usuário logado altera dados (regras RLS no `schema.sql`).

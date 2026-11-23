@@ -1,7 +1,10 @@
 import type { Settings } from '@/lib/types';
+import { normalizeGenero, palavras } from '@/lib/genero';
 import PortraitPlaceholder from './Portrait';
 
 export default function Hero({ settings }: { settings: Settings }) {
+  const termo = palavras(normalizeGenero(settings.genero));
+
   return (
     <section className="hero" id="inicio">
       <span className="hero__word" aria-hidden="true">
@@ -10,7 +13,7 @@ export default function Hero({ settings }: { settings: Settings }) {
 
       <div className="container hero__inner">
         <div className="hero__content reveal">
-          <p className="eyebrow">Tatuador{settings.cidade ? ` · ${settings.cidade}` : ''}</p>
+          <p className="eyebrow">{termo.Tatuador}{settings.cidade ? ` · ${settings.cidade}` : ''}</p>
           <h1 className="hero__title">
             Arte que fica
             <br />
@@ -40,7 +43,7 @@ export default function Hero({ settings }: { settings: Settings }) {
           <div className="portrait">
             {settings.hero_foto_url ? (
               // eslint-disable-next-line @next/next/no-img-element
-              <img src={settings.hero_foto_url} alt={`${settings.nome}, tatuador`} fetchPriority="high" />
+              <img src={settings.hero_foto_url} alt={`${settings.nome}, ${termo.tatuador}`} fetchPriority="high" />
             ) : (
               <PortraitPlaceholder />
             )}
@@ -48,7 +51,7 @@ export default function Hero({ settings }: { settings: Settings }) {
 
           <div className="chip chip--name">
             <strong>{settings.nome}</strong>
-            <span>{settings.cidade ? `Tatuador · ${settings.cidade}` : 'Tatuador profissional'}</span>
+            <span>{settings.cidade ? `${termo.Tatuador} · ${settings.cidade}` : termo.profissional}</span>
           </div>
           <div className="chip chip--stat">
             <strong data-count={settings.stat_tattoos} data-suffix="+">
